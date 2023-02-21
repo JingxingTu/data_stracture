@@ -36,11 +36,11 @@ public class SparseArray {
 		
 		System.out.println(sum);
 		
-		int chessArr2[][] = new int[sum+1][3];
+		int sparseArray[][] = new int[sum+1][3];
 		
-		chessArr2[0][0] = 11;
-		chessArr2[0][1] = 11;
-		chessArr2[0][2] = sum;
+		sparseArray[0][0] = 11;
+		sparseArray[0][1] = 11;
+		sparseArray[0][2] = sum;
 		
 		int index = 0;
 		for(int i = 0 ; i < 11 ; i++) {
@@ -48,9 +48,9 @@ public class SparseArray {
 				
 				if(chessArr1[i][j] != 0) {
 					index++;
-					chessArr2[index][0] = i;
-					chessArr2[index][1] = j;
-					chessArr2[index][2] = chessArr1[i][j];
+					sparseArray[index][0] = i;
+					sparseArray[index][1] = j;
+					sparseArray[index][2] = chessArr1[i][j];
 				}
 			}
 		}
@@ -59,14 +59,26 @@ public class SparseArray {
 		// show sparse array
 		for(int i = 0 ; i < sum+1 ; i++) {
 			for(int j = 0; j < 3; j++) {
-				System.out.printf("%d\t",chessArr2[i][j]);
+				System.out.printf("%d\t",sparseArray[i][j]);
 				
 			}
 			System.out.println();
 		}
 		
+		// transform sparsArray to chessArr2
 		
+		int chessArr2[][] = new int[sparseArray[0][0]][sparseArray[0][1]];
 		
+		for(int i = 1; i < sparseArray.length ; i++) {
+			chessArr2[sparseArray[i][0]][sparseArray[i][1]] = sparseArray[i][2];
+		}
+		// show chess array 2
+		for(int[] row : chessArr2) {
+			for(int data : row) {
+				System.out.printf("%d\t",data);
+			}
+			System.out.println();
+		}
 	}
 
 }
